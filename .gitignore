@@ -7,7 +7,7 @@
 .vscode/
 .DS_Store
 
-# Oracle Wallet - NUNCA subir al repo
+
 **/wallet/
 **/*.p12
 **/*.sso

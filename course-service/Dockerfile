@@ -14,6 +14,8 @@ ENTRYPOINT ["java", \
   "-Doracle.net.tns_admin=/app/wallet", \
   "-Djavax.net.ssl.trustStore=/app/wallet/truststore.jks", \
   "-Djavax.net.ssl.trustStoreType=JKS", \
+  "-Djavax.net.ssl.trustStorePassword=OracleCloud_2025", \
   "-Djavax.net.ssl.keyStore=/app/wallet/keystore.jks", \
   "-Djavax.net.ssl.keyStoreType=JKS", \
+  "-Djavax.net.ssl.keyStorePassword=OracleCloud_2025", \
   "-jar", "app.jar"]

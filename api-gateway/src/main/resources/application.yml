@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 8080
+
+# URLs internas de los microservicios en EC2
+# En producción usa la IP privada de la instancia EC2
+services:
+  course-service:
+    url: http://localhost:8081
+  student-service:
+    url: http://localhost:8082
+  enrollment-service:
+    url: http://localhost:8083
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
+
+# Logging
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO

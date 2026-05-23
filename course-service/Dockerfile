@@ -10,13 +10,10 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=builder /build/target/course-service-1.0.0.jar app.jar
 EXPOSE 8081
-ENTRYPOINT ["sh", "-c", "\
-  if [ -f /app/wallet/truststore.jks ]; then \
-    keytool -importkeystore \
-      -srckeystore /app/wallet/truststore.jks \
-      -destkeystore $JAVA_HOME/lib/security/cacerts \
-      -srcstorepass $WALLET_PASSWORD \
-      -deststorepass changeit \
-      -noprompt 2>/dev/null || true; \
-  fi && \
-  java -jar app.jar"]
+ENTRYPOINT ["java", \
+  "-Doracle.net.tns_admin=/app/wallet", \
+  "-Djavax.net.ssl.trustStore=/app/wallet/truststore.jks", \
+  "-Djavax.net.ssl.trustStoreType=JKS", \
+  "-Djavax.net.ssl.keyStore=/app/wallet/keystore.jks", \
+  "-Djavax.net.ssl.keyStoreType=JKS", \
+  "-jar", "app.jar"]

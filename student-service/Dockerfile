@@ -9,7 +9,7 @@ RUN mvn clean package -DskipTests -B
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=builder /build/target/student-service-1.0.0.jar app.jar
-COPY wallet/ /app/wallet/
+COPY Wallet_mi3rabdd/ /app/wallet/
 EXPOSE 8082
 ENTRYPOINT ["java", \
   "-Doracle.net.tns_admin=/app/wallet", \

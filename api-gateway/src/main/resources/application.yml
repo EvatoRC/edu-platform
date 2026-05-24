@@ -29,4 +29,3 @@ management:
 logging:
   level:
     org.springframework.cloud.gateway: INFO
-# comentario pa disparar el trigger

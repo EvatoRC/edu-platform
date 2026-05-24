@@ -10,6 +10,11 @@ FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=builder /build/target/student-service-1.0.0.jar app.jar
 COPY Wallet_mi3rabdd/ /app/wallet/
+RUN keytool -import -alias oracle-db \
+    -keystore $JAVA_HOME/lib/security/cacerts \
+    -storepass changeit \
+    -noprompt \
+    -file /app/wallet/ewallet.pem || true
 EXPOSE 8082
 ENTRYPOINT ["java", \
   "-Doracle.net.tns_admin=/app/wallet", \
